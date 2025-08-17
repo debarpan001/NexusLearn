@@ -1,5 +1,1 @@
-# Firebase Studio
-
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+An AI-powered learning platform with features for note summarisation, MCQ and flashcard generation, personalised study plans, and progress tracking to enhance learning efficiency.
