@@ -12,7 +12,7 @@ export default function Footer() {
         <p>
           Developed by{' '}
           <a
-            href="https://github.com/Debarpan-says"
+            href="https://www.linkedin.com/in/debarpan-das-75298a260"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-primary hover:underline"
