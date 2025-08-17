@@ -26,8 +26,9 @@ export async function generateStudyAids(lectureNotes: string): Promise<StudyAids
     };
   } catch (error) {
     console.error("Error generating study aids:", error);
-    // Depending on the desired error handling, you might want to throw the error
-    // or return a specific error structure.
+    // Log the entire error object for more details
+    console.error("Detailed error:", JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
     throw new Error("Failed to generate study aids.");
   }
-}
+  }
+
