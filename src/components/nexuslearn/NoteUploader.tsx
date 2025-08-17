@@ -1,8 +1,9 @@
 import React from 'react';
-import { Bot, Sparkles, Loader2 } from 'lucide-react';
+import { Bot, Sparkles, Loader2, UploadCloud } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 interface NoteUploaderProps {
   onGenerate: () => void;
@@ -17,6 +18,24 @@ export default function NoteUploader({
   lectureNotes,
   setLectureNotes,
 }: NoteUploaderProps) {
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = e.target?.result as string;
+        setLectureNotes(text);
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+  
   return (
     <Card className="shadow-lg border-2 border-primary/20">
       <CardHeader>
@@ -25,7 +44,7 @@ export default function NoteUploader({
           Your AI Study Assistant
         </CardTitle>
         <CardDescription>
-          Paste your lecture notes below. Our AI will generate a summary, multiple-choice questions, and flashcards to help you study.
+          Paste your lecture notes below, or upload a file. Our AI will generate a summary, multiple-choice questions, and flashcards to help you study.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -37,19 +56,34 @@ export default function NoteUploader({
             onChange={(e) => setLectureNotes(e.target.value)}
             disabled={isLoading}
           />
-          <Button onClick={onGenerate} disabled={isLoading || !lectureNotes.trim()} className="w-full sm:w-auto sm:ml-auto" size="lg">
-            {isLoading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Generating...
-              </>
-            ) : (
-              <>
-                <Sparkles className="mr-2 h-4 w-4" />
-                Generate Study Materials
-              </>
-            )}
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+              <Button onClick={handleUploadClick} variant="outline" disabled={isLoading}>
+                <UploadCloud className="mr-2 h-4 w-4" />
+                Upload File
+              </Button>
+              <Input 
+                type="file" 
+                ref={fileInputRef} 
+                className="hidden" 
+                onChange={handleFileChange} 
+                accept=".txt,.md,.rtf,.html" 
+              />
+            </div>
+            <Button onClick={onGenerate} disabled={isLoading || !lectureNotes.trim()} className="w-full sm:w-auto" size="lg">
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                <>
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Generate Study Materials
+                </>
+              )}
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
