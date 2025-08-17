@@ -4,6 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import * as pdfjs from 'pdfjs-dist';
+
+// Set worker path for pdfjs
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+
 
 interface NoteUploaderProps {
   onGenerate: () => void;
@@ -20,15 +25,37 @@ export default function NoteUploader({
 }: NoteUploaderProps) {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const text = e.target?.result as string;
-        setLectureNotes(text);
-      };
-      reader.readAsText(file);
+      if (file.type === 'application/pdf') {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          const typedArray = new Uint8Array(e.target?.result as ArrayBuffer);
+          try {
+            const pdf = await pdfjs.getDocument(typedArray).promise;
+            let fullText = '';
+            for (let i = 1; i <= pdf.numPages; i++) {
+              const page = await pdf.getPage(i);
+              const textContent = await page.getTextContent();
+              const pageText = textContent.items.map(item => (item as any).str).join(' ');
+              fullText += pageText + '\n';
+            }
+            setLectureNotes(fullText);
+          } catch (error) {
+            console.error('Error parsing PDF:', error);
+            setLectureNotes('Error reading PDF file.');
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const text = e.target?.result as string;
+          setLectureNotes(text);
+        };
+        reader.readAsText(file);
+      }
     }
   };
 
@@ -67,6 +94,7 @@ export default function NoteUploader({
                 ref={fileInputRef} 
                 className="hidden" 
                 onChange={handleFileChange}
+                accept=".txt,.md,.pdf"
               />
             </div>
             <Button onClick={onGenerate} disabled={isLoading || !lectureNotes.trim()} className="w-full sm:w-auto" size="lg">
