@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrainCircuit, User } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { BrainCircuit, GraduationCap } from 'lucide-react';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 export default function Header() {
   return (
@@ -17,9 +16,8 @@ export default function Header() {
             </div>
             <div className="flex flex-1 items-center justify-end space-x-2">
                 <Avatar>
-                    <AvatarImage src="https://placehold.co/100x100.png" alt="User avatar" data-ai-hint="person student" />
                     <AvatarFallback>
-                    <User />
+                        <GraduationCap />
                     </AvatarFallback>
                 </Avatar>
             </div>
