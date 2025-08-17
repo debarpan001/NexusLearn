@@ -43,12 +43,19 @@ const summarizeNotesFlow = ai.defineFlow(
     outputSchema: SummarizeNotesOutputSchema,
   },
   async input => {
-    const {output} = await summarizeNotesPrompt(input);
-    // Adding a default progress in the flow.
-    const progress = 'Notes summarization completed.';
-    return {
-      summary: output!.summary,
-      progress: progress,
-    };
+    try {
+      const {output} = await summarizeNotesPrompt(input);
+      // Adding a default progress in the flow.
+      const progress = 'Notes summarization completed.';
+      return {
+        summary: output!.summary,
+        progress: progress,
+      };
+    } catch (error) {
+      // Add detailed logging here
+      console.error('Error in summarizeNotesFlow:', error);
+      // Re-throw the error so it's caught in generateStudyAids
+      throw error;
+    }
   }
 );

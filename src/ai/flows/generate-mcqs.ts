@@ -55,10 +55,17 @@ const generateMCQsFlow = ai.defineFlow(
     outputSchema: GenerateMCQsOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return {
-      ...output!,
-      progress: 'Generated multiple-choice questions from the lecture notes.',
-    };
+    try {
+      const {output} = await prompt(input);
+      return {
+        ...output!,
+        progress: 'Generated multiple-choice questions from the lecture notes.',
+      };
+    } catch (error) {
+      // Add detailed logging here
+      console.error('Error in generateMCQsFlow:', error);
+      // Re-throw the error
+      throw error;
+    }
   }
 );

@@ -53,7 +53,13 @@ const createFlashcardsFlow = ai.defineFlow(
     outputSchema: CreateFlashcardsOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error) {
+      // Add detailed logging here
+      console.error('Error in createFlashcardsFlow:', error);
+      throw error;
+    }
   }
 );
