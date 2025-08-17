@@ -24,10 +24,12 @@ export default function NoteUploader({
   setLectureNotes,
 }: NoteUploaderProps) {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const [isUploading, setIsUploading] = React.useState(false);
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      setIsUploading(true);
       if (file.type === 'application/pdf') {
         const reader = new FileReader();
         reader.onload = async (e) => {
@@ -45,6 +47,8 @@ export default function NoteUploader({
           } catch (error) {
             console.error('Error parsing PDF:', error);
             setLectureNotes('Error reading PDF file.');
+          } finally {
+            setIsUploading(false);
           }
         };
         reader.readAsArrayBuffer(file);
@@ -53,6 +57,7 @@ export default function NoteUploader({
         reader.onload = (e) => {
           const text = e.target?.result as string;
           setLectureNotes(text);
+          setIsUploading(false);
         };
         reader.readAsText(file);
       }
@@ -81,13 +86,17 @@ export default function NoteUploader({
             className="min-h-[200px] text-base resize-y bg-background/50 focus:bg-background"
             value={lectureNotes}
             onChange={(e) => setLectureNotes(e.target.value)}
-            disabled={isLoading}
+            disabled={isLoading || isUploading}
           />
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div>
-              <Button onClick={handleUploadClick} variant="outline" disabled={isLoading}>
-                <UploadCloud className="mr-2 h-4 w-4" />
-                Upload Document
+              <Button onClick={handleUploadClick} variant="outline" disabled={isLoading || isUploading}>
+                {isUploading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <UploadCloud className="mr-2 h-4 w-4" />
+                )}
+                {isUploading ? 'Processing...' : 'Upload Document'}
               </Button>
               <Input 
                 type="file" 
@@ -95,9 +104,10 @@ export default function NoteUploader({
                 className="hidden" 
                 onChange={handleFileChange}
                 accept=".txt,.md,.pdf"
+                disabled={isLoading || isUploading}
               />
             </div>
-            <Button onClick={onGenerate} disabled={isLoading || !lectureNotes.trim()} className="w-full sm:w-auto" size="lg">
+            <Button onClick={onGenerate} disabled={isLoading || !lectureNotes.trim() || isUploading} className="w-full sm:w-auto" size="lg">
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
