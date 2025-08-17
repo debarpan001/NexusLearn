@@ -44,7 +44,7 @@ export default function NoteUploader({
           Your AI Study Assistant
         </CardTitle>
         <CardDescription>
-          Paste your lecture notes below, or upload a file. Our AI will generate a summary, multiple-choice questions, and flashcards to help you study.
+          Paste your lecture notes below, or upload a document. Our AI will generate a summary, multiple-choice questions, and flashcards to help you study.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -60,14 +60,13 @@ export default function NoteUploader({
             <div>
               <Button onClick={handleUploadClick} variant="outline" disabled={isLoading}>
                 <UploadCloud className="mr-2 h-4 w-4" />
-                Upload File
+                Upload Document
               </Button>
               <Input 
                 type="file" 
                 ref={fileInputRef} 
                 className="hidden" 
-                onChange={handleFileChange} 
-                accept=".txt,.md,.rtf,.html" 
+                onChange={handleFileChange}
               />
             </div>
             <Button onClick={onGenerate} disabled={isLoading || !lectureNotes.trim()} className="w-full sm:w-auto" size="lg">
