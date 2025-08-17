@@ -8,6 +8,7 @@ import { generateStudyAids } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 
 import Header from '@/components/nexuslearn/Header';
+import Footer from '@/components/nexuslearn/Footer';
 import NoteUploader from '@/components/nexuslearn/NoteUploader';
 import ProgressDashboard from '@/components/nexuslearn/ProgressDashboard';
 import StudyPlan from '@/components/nexuslearn/StudyPlan';
@@ -71,7 +72,7 @@ export default function NexusLearnHomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-1 p-4 sm:p-6 md:p-8">
+      <main className="flex-1 container mx-auto p-4 sm:p-6 md:p-8">
         <div className="grid gap-8">
           <NoteUploader
             onGenerate={handleGenerate}
@@ -118,7 +119,7 @@ export default function NexusLearnHomePage() {
           )}
 
           {!isPending && !hasGeneratedContent && (
-             <Card className="text-center py-16 px-8">
+             <Card className="text-center py-16 px-8 border-dashed border-2">
                 <CardHeader>
                     <div className="mx-auto bg-secondary p-4 rounded-full w-fit">
                         <Bot className="h-12 w-12 text-primary" />
@@ -135,6 +136,7 @@ export default function NexusLearnHomePage() {
 
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
