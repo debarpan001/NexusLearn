@@ -1,7 +1,7 @@
 <h1 align="center">
   <picture>
     <source srcset="https://raw.githubusercontent.com/debarpan001/NexusLearn/main/docs/logo-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="https://raw.githubusercontent.com/debarpan001/NexusLearn/main/docs/logo-light.png" alt="NexusLearn Logo" width="200">
+    
   </picture>
   <br>
   NexusLearn
