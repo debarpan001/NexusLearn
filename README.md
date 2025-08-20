@@ -1,6 +1,6 @@
 # NexusLearn
 
-**An AI-powered learning platform with features for note summarisation, MCQ and flashcard generation, personalised study plans, and progress tracking to enhance learning efficiency.** :contentReference[oaicite:0]{index=0}
+**An AI-powered learning platform with features for note summarisation, MCQ and flashcard generation, personalised study plans, and progress tracking to enhance learning efficiency.** 
 
 ---
 
@@ -29,7 +29,7 @@ NexusLearn is an **AI-powered educational tool** built with Next.js and Firebase
 - Summarise notes intelligently  
 - Generate multiple-choice questions (MCQs) and flashcards  
 - Create **personalised study plans**  
-- **Track progress** over time to boost learning efficiency :contentReference[oaicite:1]{index=1}
+- **Track progress** over time to boost learning efficiency 
 
 ---
 
@@ -45,14 +45,14 @@ NexusLearn is an **AI-powered educational tool** built with Next.js and Firebase
 
 ##  Live Demo
 
-Explore the app live at: **nexus-learn-pi.vercel.app** :contentReference[oaicite:2]{index=2}.
+Explore the app live at: **nexus-learn-pi.vercel.app** 
 
 ---
 
 ##  Tech Stack
 
 - **Frontend**: Next.js (TypeScript, Tailwind CSS)  
-- **Backend**: Firebase services—Authentication, Firestore, Storage; optionally deployed via Firebase Studio (if used) :contentReference[oaicite:3]{index=3}.  
-- **Deployment**: Vercel (as indicated by the live preview) :contentReference[oaicite:4]{index=4}.  
+- **Backend**: Firebase services—Authentication, Firestore, Storage. 
+- **Deployment**: Vercel .  
 
 ---
