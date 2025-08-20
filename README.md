@@ -1,58 +1,61 @@
-# NexusLearn
+<h1 align="center">
+  <picture>
+    <source srcset="https://raw.githubusercontent.com/debarpan001/NexusLearn/main/docs/logo-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="https://raw.githubusercontent.com/debarpan001/NexusLearn/main/docs/logo-light.png" alt="NexusLearn Logo" width="200">
+  </picture>
+  <br>
+  NexusLearn
+</h1>
 
-**An AI-powered learning platform with features for note summarisation, MCQ and flashcard generation, personalised study plans, and progress tracking to enhance learning efficiency.** 
+<p align="center">
+  <em>Your smart companion for learning: AI-powered summarisation, MCQ & flashcard generation, personalized plans, and intuitive progress tracking.</em>
+</p>
 
 ---
 
 ##  Table of Contents
 
-- [About](#about)  
-- [Features](#features)  
-- [Live Demo](#live-demo)  
+- [Why NexusLearn?](#why-nexuslearn)  
+- [Key Features](#key-features)  
+- [Live Preview](#live-preview)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
   - [Prerequisites](#prerequisites)  
-  - [Installation](#installation)  
-  - [Environment Setup](#environment-setup)  
-- [Usage](#usage)  
-- [Contributing](#contributing)  
-- [Roadmap](#roadmap)  
+  - [Installation & Setup](#installation--setup)  
+  - [Running Locally](#running-locally)  
+- [Usage Highlights](#usage-highlights)  
+- [Contributing & Roadmap](#contributing--roadmap)  
 - [License](#license)  
-- [Contact](#contact)  
+- [Cheers](#cheers)  
 
 ---
 
-##  About
+##  Why NexusLearn?
 
-NexusLearn is an **AI-powered educational tool** built with Next.js and Firebase Studio (as indicated in the project description and context). It allows learners to:
-
-- Summarise notes intelligently  
-- Generate multiple-choice questions (MCQs) and flashcards  
-- Create **personalised study plans**  
-- **Track progress** over time to boost learning efficiency 
+NexusLearn is more than just a study tool—it’s a **learning ally**. Built for learners who crave structure and efficiency, it bridges the gap by converting notes into knowledge-rich summaries, creating engaging MCQs and flashcards, and crafting customized study plans—all with elegant progress visuals to keep you motivated.
 
 ---
 
-##  Features
+##  Key Features
 
-- **Note Summarisation**: Automatically condense notes into concise summaries.  
-- **MCQ & Flashcard Generation**: Quickly create study aids from content.  
-- **Personalised Study Plans**: Tailor learning schedules to individual needs.  
-- **Progress Tracking**: Monitor improvements and milestones.  
-- **AI Backend**: Likely powered by AI models—consider mentioning language models, Firebase functions, or Gemini in Firebase if applicable.
+| Feature                         | What It Does                                               |
+|---------------------------------|-------------------------------------------------------------|
+|  **Smart Summaries**           | Compress long notes into clear, concise overviews.         |
+|  **Dynamic MCQs & Flashcards** | Generate study aids from any content, in a flash!           |
+|  **Tailored Study Plans**      | Create schedules aligned with your pace and goals.          |
+|  **Progress Tracking**         | Visualize your learning journey with neat progress metrics. |
+|  **Seamless AI Integration**   | Powered by Next.js and Firebase for a smooth experience.    |
 
 ---
 
-##  Live Demo
+##  Live Preview
 
-Explore the app live at: **nexus-learn-pi.vercel.app** 
+Check it out live: [nexus-learn-pi.vercel.app](https://nexus-learn-pi.vercel.app) — see the magic happen in real-time!
 
 ---
 
 ##  Tech Stack
 
-- **Frontend**: Next.js (TypeScript, Tailwind CSS)  
-- **Backend**: Firebase services—Authentication, Firestore, Storage. 
-- **Deployment**: Vercel .  
-
----
+- **Frontend**: Next.js + TypeScript + Tailwind CSS  
+- **Backend**: Firebase (Auth, Firestore, Storage), possibly harnessing Firebase Studio for AI features  
+- **Hosting**: Deployed flawlessly via Vercel
